@@ -3,12 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>For Bianca 🌹</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-pink-50 flex items-center justify-center min-h-screen p-6">
+  <title>Bianca My Rose 🌹</title>
 
-  <div class="bg-white/80 border border-pink-200 shadow-lg max-w-lg w-full rounded-xl p-8 relative font-serif">
+  <!-- SEO -->
+  <meta name="description" content="A love letter for Bianca, my rose, my lily, my everything. Forever yours, Samuel ❤️" />
+  <meta name="keywords" content="Bianca, Love, Roses, Lilies, Romantic Letter, Samuel Love" />
+  <meta name="author" content="Samuel" />
+
+  <!-- Favicon ❤️ -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Floating roses */
+    .rose {
+      position: fixed;
+      font-size: 2rem;
+      opacity: 0.8;
+      animation: float linear infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+    @keyframes float {
+      0%   { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity:0; }
+      10%  { opacity:1; }
+      100% { transform: translateY(110vh) translateX(var(--drift, 0)) rotate(360deg); opacity:0; }
+    }
+  </style>
+</head>
+<body class="bg-pink-50 flex items-center justify-center min-h-screen p-6 overflow-hidden">
+
+  <!-- Love Letter Card -->
+  <div class="bg-white/80 border border-pink-200 shadow-xl max-w-lg w-full rounded-xl p-8 relative font-serif z-10">
     <!-- Decorative flowers -->
     <div class="absolute -top-6 -left-6 text-4xl">🌹</div>
     <div class="absolute -top-6 -right-6 text-4xl">🌸</div>
@@ -17,7 +44,7 @@
 
     <!-- Title -->
     <h1 class="text-3xl font-bold text-pink-700 text-center mb-4">
-      A Love Letter for Bianca
+      A Love Letter for Bianca 🌹
     </h1>
 
     <!-- Poem -->
@@ -45,5 +72,27 @@
     </div>
   </div>
 
+  <!-- Flowing Roses -->
+  <script>
+    const emojis = ["🌹","🌸","🌷","💖"];
+    function spawnRose(){
+      const el = document.createElement("div");
+      el.className = "rose";
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      const left = Math.random() * 100;
+      const duration = 10 + Math.random() * 10;
+      const drift = (Math.random() * 60 - 30) + "px";
+
+      el.style.left = left + "vw";
+      el.style.animationDuration = duration + "s";
+      el.style.setProperty("--drift", drift);
+
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), duration * 1000);
+    }
+    setInterval(spawnRose, 1200);
+    // Spawn some at start
+    for(let i=0;i<10;i++) setTimeout(spawnRose, i*300);
+  </script>
 </body>
 </html>
